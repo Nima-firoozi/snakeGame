@@ -59,6 +59,7 @@
 
             for (let i = 1; i <= 400; i++) {
                 const childDiv = document.createElement('div');
+                childDiv.classList.add("empty")
                 childDiv.setAttribute('data-number', i);
                 fragment.appendChild(childDiv);
             }
@@ -70,28 +71,30 @@
 
             const numbersOfStart = [190, 191, 210, 211];
             const startSelected = Math.floor(Math.random() * numbersOfStart.length);
-            console.log(numbersOfStart[startSelected]);
             document.querySelector(`[data-number="${numbersOfStart[startSelected]}"]`).classList.add("snake", "first", "last")
+            document.querySelector(`[data-number="${numbersOfStart[startSelected]}"]`).classList.remove("empty")
 
             //select center div for start snake
 
         }
 
 
-        let moveSnakeDirect = 0;
+        let moveSnakeDirect = 0
         let start = false
+        let changeDirect = false
         document.querySelector("body").addEventListener("keydown", (e) => {
 
+            e.keyCode == moveSnakeDirect ? changeDirect = false : changeDirect = true
             moveSnakeDirect = e.keyCode;
             start ? null : startGame()
             start = true
+
         })
 
 
 
 
         function startGame() {
-
             !moveSnakeDirect ? null :
                 setInterval(() => {
 
@@ -104,17 +107,47 @@
 
                             break;
                         case 39:
-                            let numberOfFirst = document.querySelector(".first").dataset.number
-                            document.querySelector(".first").classList.remove("first")
-                            document.querySelector(`[data-number="${+numberOfFirst + 1}"]`).classList.add("first", "snake")
-                            document.querySelector(".last").classList.remove("snake")
+                            let firstOfSnake = document.querySelector(".first")
+                            let numberOfFirst = firstOfSnake.dataset.number
+                            firstOfSnake.classList.add("right")
+                            firstOfSnake.classList.remove("first")
+                            let nextOfSnake = 
+                            
+                            .classList.add("first", "snake")
+                            document.querySelector(`[data-number="${+numberOfFirst + 1}"]`).classList.remove("empty")
+                            let lastOfSnake = document.querySelector(".last")
+                            lastOfSnake.classList.remove("snake", "last")
+                            console.log(lastOfSnake.className);
+                            switch (lastOfSnake.className) {
+                                case "right":
+                                    let numberOfLast = lastOfSnake.dataset.number
+                                    document.querySelector(`[data-number="${+numberOfLast + 1}"]`).classList.add("last")
+                                    lastOfSnake.className = 'empty'
+                                    break;
+                                case "up":
+                                    lastOfSnake.className = ''
+
+                                    break;
+                                case "left":
+                                    lastOfSnake.className = ''
+
+                                    break;
+                                case "down":
+                                    lastOfSnake.className = ''
+
+                                    break;
+                            }
+
+
+
+
 
                             break;
                         case 40:
 
                             break;
                     }
-                }, 500);
+                }, 1500);
         }
 
 
