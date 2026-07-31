@@ -71,7 +71,7 @@
             const numbersOfStart = [190, 191, 210, 211];
             const startSelected = Math.floor(Math.random() * numbersOfStart.length);
             console.log(numbersOfStart[startSelected]);
-            document.querySelector(`[data-number="${numbersOfStart[startSelected]}"]`).classList.add("snake")
+            document.querySelector(`[data-number="${numbersOfStart[startSelected]}"]`).classList.add("snake", "first", "last")
 
             //select center div for start snake
 
@@ -87,13 +87,34 @@
             start = true
         })
 
+
+
+
         function startGame() {
 
             !moveSnakeDirect ? null :
                 setInterval(() => {
 
+                    console.log(moveSnakeDirect);
+                    switch (moveSnakeDirect) {
+                        case 37:
+
+                            break;
+                        case 38:
+
+                            break;
+                        case 39:
+                            let numberOfFirst = document.querySelector(".first").dataset.number
+                            document.querySelector(".first").classList.remove("first")
+                            document.querySelector(`[data-number="${+numberOfFirst + 1}"]`).classList.add("first", "snake")
+                            document.querySelector(".last").classList.remove("snake")
+
+                            break;
+                        case 40:
+
+                            break;
+                    }
                 }, 500);
-            document.querySelector
         }
 
 
