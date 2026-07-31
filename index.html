@@ -91,10 +91,7 @@
 
         })
 
-        function clearBack(numberOfLast, numberOfDirect) {
-            document.querySelector(`[data-number="${+numberOfLast + +numberOfDirect}"]`).classList.add("last")
-            lastOfSnake.className = 'empty'
-        }
+
 
         function moveTo(direct, numberOfDirect) {
             let firstOfSnake = document.querySelector(".first")
@@ -109,16 +106,20 @@
             lastOfSnake.classList.remove("snake", "last")
             switch (lastOfSnake.className) {
                 case "right":
-                    clearBack(numberOfLast, 1)
+                    document.querySelector(`[data-number="${+numberOfLast + +1}"]`).classList.add("last")
+                    lastOfSnake.className = 'empty'
                     break;
                 case "up":
-                    clearBack(numberOfLast, -20)
+                    document.querySelector(`[data-number="${+numberOfLast + -20}"]`).classList.add("last")
+                    lastOfSnake.className = 'empty'
                     break;
                 case "left":
-                    clearBack(numberOfLast, -1)
+                    document.querySelector(`[data-number="${+numberOfLast + -1}"]`).classList.add("last")
+                    lastOfSnake.className = 'empty'
                     break;
                 case "down":
-                    clearBack(numberOfLast, 20)
+                    document.querySelector(`[data-number="${+numberOfLast + +20}"]`).classList.add("last")
+                    lastOfSnake.className = 'empty'
                     break;
             }
         }
@@ -141,10 +142,10 @@
 
                             break;
                         case 40:
-                            moveTo("down", 40)
+                            moveTo("down", 20)
                             break;
                     }
-                }, 1500);
+                }, 500);
         }
 
 
