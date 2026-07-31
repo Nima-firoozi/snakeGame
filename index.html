@@ -36,6 +36,10 @@
                 border: 1px solid rgba(255, 255, 255, 0.57);
             }
         }
+
+        .snake {
+            background: greenyellow;
+        }
     </style>
 </head>
 
@@ -47,15 +51,37 @@
         const wrapper = document.querySelector('.wrapper');
         const fragment = document.createDocumentFragment();
 
+        beforeStrat()
 
-        //build ui of wrapper
+        function beforeStrat() {
+            //build ui of wrapper
 
-        for (let i = 1; i <= 400; i++) {
-            const childDiv = document.createElement('div');
-            childDiv.setAttribute('data-number', i);
-            fragment.appendChild(childDiv);
+            for (let i = 1; i <= 400; i++) {
+                const childDiv = document.createElement('div');
+                childDiv.setAttribute('data-number', i);
+                fragment.appendChild(childDiv);
+            }
+            wrapper.appendChild(fragment);
+
+            //build ui of wrapper
+
+            //select center div for start snake
+
+            const numbersOfStart = [190, 191, 210, 211];
+            const startSelected = Math.floor(Math.random() * numbersOfStart.length);
+            console.log(numbersOfStart[startSelected]);
+            document.querySelector(`[data-number="${numbersOfStart[startSelected]}"]`).classList.add("snake")
+
+            //select center div for start snake
+
         }
-        wrapper.appendChild(fragment); 
+
+
+
+
+
+
+
     </script>
 
 </body>
