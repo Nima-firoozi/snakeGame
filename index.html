@@ -86,9 +86,17 @@
         let moveSnakeDirect = 0
         let start = false
         let changeDirect = false
+        let snakeLength = document.querySelectorAll(".snake").length
         document.querySelector("body").addEventListener("keydown", (e) => {
 
             e.keyCode == moveSnakeDirect ? changeDirect = false : changeDirect = true
+
+            if (snakeLength != 1) {
+                if (moveSnakeDirect - 2 == e.keyCode || moveSnakeDirect + 2 == e.keyCode) {
+                    return
+                }
+            }
+
             moveSnakeDirect = e.keyCode;
             start ? null : startGame()
             start = true
@@ -107,6 +115,7 @@
             let firstOfSnake = document.querySelector(".first")
             let numberOfFirst = firstOfSnake.dataset.number
             let nextOfSnake = document.querySelector(`[data-number="${+numberOfFirst + +numberOfDirect}"]`)
+            console.log((+numberOfDirect + +numberOfFirst) % 20)
             let lastOfSnake = document.querySelector(".last")
             let numberOfLast = lastOfSnake.dataset.number
             firstOfSnake.classList.add(direct)
