@@ -91,7 +91,37 @@
 
         })
 
+        function clearBack(numberOfLast, numberOfDirect) {
+            document.querySelector(`[data-number="${+numberOfLast + +numberOfDirect}"]`).classList.add("last")
+            lastOfSnake.className = 'empty'
+        }
 
+        function moveTo(direct, numberOfDirect) {
+            let firstOfSnake = document.querySelector(".first")
+            let numberOfFirst = firstOfSnake.dataset.number
+            let nextOfSnake = document.querySelector(`[data-number="${+numberOfFirst + +numberOfDirect}"]`)
+            let lastOfSnake = document.querySelector(".last")
+            let numberOfLast = lastOfSnake.dataset.number
+            firstOfSnake.classList.add(direct)
+            firstOfSnake.classList.remove("first")
+            nextOfSnake.classList.add("first", "snake")
+            nextOfSnake.classList.remove("empty")
+            lastOfSnake.classList.remove("snake", "last")
+            switch (lastOfSnake.className) {
+                case "right":
+                    clearBack(numberOfLast, 1)
+                    break;
+                case "up":
+                    clearBack(numberOfLast, -20)
+                    break;
+                case "left":
+                    clearBack(numberOfLast, -1)
+                    break;
+                case "down":
+                    clearBack(numberOfLast, 20)
+                    break;
+            }
+        }
 
 
         function startGame() {
@@ -101,50 +131,17 @@
                     console.log(moveSnakeDirect);
                     switch (moveSnakeDirect) {
                         case 37:
-
+                            moveTo("left", -1)
                             break;
                         case 38:
-
+                            moveTo("up", -20)
                             break;
                         case 39:
-                            let firstOfSnake = document.querySelector(".first")
-                            let numberOfFirst = firstOfSnake.dataset.number
-                            firstOfSnake.classList.add("right")
-                            firstOfSnake.classList.remove("first")
-                            let nextOfSnake = 
-                            
-                            .classList.add("first", "snake")
-                            document.querySelector(`[data-number="${+numberOfFirst + 1}"]`).classList.remove("empty")
-                            let lastOfSnake = document.querySelector(".last")
-                            lastOfSnake.classList.remove("snake", "last")
-                            console.log(lastOfSnake.className);
-                            switch (lastOfSnake.className) {
-                                case "right":
-                                    let numberOfLast = lastOfSnake.dataset.number
-                                    document.querySelector(`[data-number="${+numberOfLast + 1}"]`).classList.add("last")
-                                    lastOfSnake.className = 'empty'
-                                    break;
-                                case "up":
-                                    lastOfSnake.className = ''
-
-                                    break;
-                                case "left":
-                                    lastOfSnake.className = ''
-
-                                    break;
-                                case "down":
-                                    lastOfSnake.className = ''
-
-                                    break;
-                            }
-
-
-
-
+                            moveTo("right", 1)
 
                             break;
                         case 40:
-
+                            moveTo("down", 40)
                             break;
                     }
                 }, 1500);
