@@ -40,6 +40,10 @@
         .snake {
             background: greenyellow;
         }
+
+        .food {
+            background: red;
+        }
     </style>
 </head>
 
@@ -91,8 +95,14 @@
 
         })
 
+        function createFood() {
+            let emptyBlock = document.querySelectorAll(".empty")
+            let numberRandomEmptyBlock = Math.floor(Math.random() * emptyBlock.length);
+            emptyBlock[numberRandomEmptyBlock].classList.add("food")
+            emptyBlock[numberRandomEmptyBlock].classList.remove("empty")
 
-
+        }
+        createFood()
         function moveTo(direct, numberOfDirect) {
             let firstOfSnake = document.querySelector(".first")
             let numberOfFirst = firstOfSnake.dataset.number
@@ -100,6 +110,17 @@
             let lastOfSnake = document.querySelector(".last")
             let numberOfLast = lastOfSnake.dataset.number
             firstOfSnake.classList.add(direct)
+            if (nextOfSnake.classList.contains("food")) {
+                nextOfSnake.classList.remove("food")
+                firstOfSnake.classList.remove("first")
+                nextOfSnake.classList.add("first", "snake")
+                createFood()
+                return;
+            }
+            if (nextOfSnake.classList.contains("snake")) {
+                alert("game over")
+                return;
+            }
             firstOfSnake.classList.remove("first")
             nextOfSnake.classList.add("first", "snake")
             nextOfSnake.classList.remove("empty")
@@ -128,8 +149,6 @@
         function startGame() {
             !moveSnakeDirect ? null :
                 setInterval(() => {
-
-                    console.log(moveSnakeDirect);
                     switch (moveSnakeDirect) {
                         case 37:
                             moveTo("left", -1)
