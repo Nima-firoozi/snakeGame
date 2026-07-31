@@ -51,6 +51,7 @@
         const wrapper = document.querySelector('.wrapper');
         const fragment = document.createDocumentFragment();
 
+
         beforeStrat()
 
         function beforeStrat() {
@@ -77,8 +78,23 @@
         }
 
 
+        let moveSnakeDirect = 0;
+        let start = false
+        document.querySelector("body").addEventListener("keydown", (e) => {
 
+            moveSnakeDirect = e.keyCode;
+            start ? null : startGame()
+            start = true
+        })
 
+        function startGame() {
+
+            !moveSnakeDirect ? null :
+                setInterval(() => {
+
+                }, 500);
+            document.querySelector
+        }
 
 
 
