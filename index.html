@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnakeGame</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            background: black;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wrapper {
+            min-width: 400px;
+            aspect-ratio: 1/1;
+            border: 2px solid white;
+            align-content: start;
+            justify-self: center;
+            display: flex;
+            flex-wrap: wrap;
+
+            >div {
+                width: 5%;
+                height: 5%;
+                border: 1px solid rgba(255, 255, 255, 0.57);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+    </div>
+
+    <script>
+        const wrapper = document.querySelector('.wrapper');
+        const fragment = document.createDocumentFragment();
+
+
+        //build ui of wrapper
+
+        for (let i = 1; i <= 400; i++) {
+            const childDiv = document.createElement('div');
+            childDiv.setAttribute('data-number', i);
+            fragment.appendChild(childDiv);
+        }
+        wrapper.appendChild(fragment); 
+    </script>
+
+</body>
+
+</html>
