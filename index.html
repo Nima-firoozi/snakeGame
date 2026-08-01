@@ -54,8 +54,8 @@
     <script>
         const wrapper = document.querySelector('.wrapper');
         const fragment = document.createDocumentFragment();
+        let nextSnakeNumber = 191;
 
-        let nextSnakeNumber = true;
 
         beforeStrat()
 
@@ -73,6 +73,7 @@
             //build ui of wrapper
 
             //select center div for start snake
+
 
             const numbersOfStart = [190, 191, 210, 211];
             const startSelected = Math.floor(Math.random() * numbersOfStart.length);
@@ -124,6 +125,9 @@
             let firstOfSnake = document.querySelector(".first")
             let numberOfFirst = firstOfSnake.dataset.number
             nextSnakeNumber = +numberOfFirst + +numberOfDirect
+            if (nextSnakeNumber > 400 || nextSnakeNumber < 1) {
+                gameOver()
+            }
             let nextOfSnake = document.querySelector(`[data-number="${+nextSnakeNumber}"]`)
             let lastOfSnake = document.querySelector(".last")
             let numberOfLast = lastOfSnake.dataset.number
@@ -169,15 +173,16 @@
                 setInterval(() => {
                     switch (moveSnakeDirect) {
                         case 37:
-                            moveTo("left", -1)
+                            console.log((nextSnakeNumber % 20 == 1));
+
+
+                            (nextSnakeNumber % 20) == 1 ? gameOver() : moveTo("left", -1)
                             break;
                         case 38:
                             moveTo("up", -20)
                             break;
                         case 39:
-                            console.log(nextSnakeNumber % 20);
                             (nextSnakeNumber % 20) ? moveTo("right", 1) : gameOver()
-
                             break;
                         case 40:
                             moveTo("down", 20)
