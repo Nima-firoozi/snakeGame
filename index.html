@@ -32,10 +32,11 @@
             width: 400px;
             aspect-ratio: 1/1;
             border: 2px solid white;
-            align-content: start;
-            justify-self: center;
+
             display: flex;
             flex-wrap: wrap;
+            align-content: center;
+            justify-content: center;
 
             >div {
                 width: 5%;
@@ -148,8 +149,15 @@
         let start = false
         let changeDirect = false
 
+        function win() {
+            wrapper.innerHTML = `<h2>win</h2>`
+        }
+
         document.querySelector("body").addEventListener("keydown", (e) => {
             let snakeLength = document.querySelectorAll(".snake").length
+            snakeLength = 400
+            snakeLength == 400 ? win() : null
+
             e.keyCode == moveSnakeDirect ? changeDirect = false : changeDirect = true
             if (snakeLength != 1) {
                 if (moveSnakeDirect - 2 == e.keyCode || moveSnakeDirect + 2 == e.keyCode) {
