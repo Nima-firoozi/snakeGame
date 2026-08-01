@@ -105,12 +105,16 @@
         })
 
         function gameOver() {
-            alert("game over")
+            wrapper.innerHTML = ''
         }
 
         function createFood() {
             let emptyBlock = document.querySelectorAll(".empty")
             let numberRandomEmptyBlock = Math.floor(Math.random() * emptyBlock.length);
+            while (!(emptyBlock[numberRandomEmptyBlock])) {
+                console.log(1);
+                numberRandomEmptyBlock = Math.floor(Math.random() * emptyBlock.length);
+            }
             emptyBlock[numberRandomEmptyBlock].classList.add("food")
             emptyBlock[numberRandomEmptyBlock].classList.remove("empty")
 
@@ -173,9 +177,6 @@
                 setInterval(() => {
                     switch (moveSnakeDirect) {
                         case 37:
-                            console.log((nextSnakeNumber % 20 == 1));
-
-
                             (nextSnakeNumber % 20) == 1 ? gameOver() : moveTo("left", -1)
                             break;
                         case 38:
