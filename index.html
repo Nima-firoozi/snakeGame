@@ -75,7 +75,13 @@
             }
         }
 
-
+        h2 {
+            width: 100%;
+            color: aliceblue;
+            margin-top: 10px;
+            font-size: 40px;
+            text-align: center;
+        }
 
         .snake {
             background: greenyellow;
@@ -96,12 +102,12 @@
     <div class="wrapper">
 
     </div>
-
+    <h2 class="score">Level : 1 / 400</h2>
     <script>
         const wrapper = document.querySelector('.wrapper');
         const fragment = document.createDocumentFragment();
+        const score = document.querySelector(".score")
         let nextSnakeNumber = 191;
-
 
         beforeStrat()
 
@@ -139,7 +145,7 @@
             //select empty block for food
 
             createFood()
-
+            snakeLength = document.querySelector(".snake")
             //select empty block for food
 
         }
@@ -148,16 +154,20 @@
         let moveSnakeDirect = 0
         let start = false
         let changeDirect = false
+        function snakeLengthNumber() {
+            return document.querySelectorAll(".snake").length
 
+
+        }
+        function winCheck() {
+            snakeLengthNumber() == 400 ? win() : null
+        }
         function win() {
             wrapper.innerHTML = `<h2>win</h2>`
+            clearInterval(startSetInterval)
         }
 
         document.querySelector("body").addEventListener("keydown", (e) => {
-            let snakeLength = document.querySelectorAll(".snake").length
-            snakeLength = 400
-            snakeLength == 400 ? win() : null
-
             e.keyCode == moveSnakeDirect ? changeDirect = false : changeDirect = true
             if (snakeLength != 1) {
                 if (moveSnakeDirect - 2 == e.keyCode || moveSnakeDirect + 2 == e.keyCode) {
@@ -217,7 +227,9 @@
                 nextOfSnake.classList.remove("food")
                 firstOfSnake.classList.remove("first")
                 nextOfSnake.classList.add("first", "snake")
-                createFood()
+                score.innerHTML = `Level : ${snakeLengthNumber()}/400`
+                winCheck()
+                snakeLengthNumber() < 400 ? createFood() : null
                 return;
             }
             if (nextOfSnake.classList.contains("snake")) {
