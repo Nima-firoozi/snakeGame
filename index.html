@@ -55,6 +55,7 @@
         const wrapper = document.querySelector('.wrapper');
         const fragment = document.createDocumentFragment();
 
+        let nextSnakeNumber = true;
 
         beforeStrat()
 
@@ -113,12 +114,17 @@
             emptyBlock[numberRandomEmptyBlock].classList.remove("empty")
 
         }
+
+        function selectNextBlock() {
+
+        }
         createFood()
+
         function moveTo(direct, numberOfDirect) {
             let firstOfSnake = document.querySelector(".first")
             let numberOfFirst = firstOfSnake.dataset.number
-            let nextOfSnake = document.querySelector(`[data-number="${+numberOfFirst + +numberOfDirect}"]`)
-            console.log((+numberOfDirect + +numberOfFirst) % 20)
+            nextSnakeNumber = +numberOfFirst + +numberOfDirect
+            let nextOfSnake = document.querySelector(`[data-number="${+nextSnakeNumber}"]`)
             let lastOfSnake = document.querySelector(".last")
             let numberOfLast = lastOfSnake.dataset.number
             firstOfSnake.classList.add(direct)
@@ -169,7 +175,8 @@
                             moveTo("up", -20)
                             break;
                         case 39:
-                            moveTo("right", 1)
+                            console.log(nextSnakeNumber % 20);
+                            (nextSnakeNumber % 20) ? moveTo("right", 1) : gameOver()
 
                             break;
                         case 40:
