@@ -86,11 +86,10 @@
         let moveSnakeDirect = 0
         let start = false
         let changeDirect = false
-        let snakeLength = document.querySelectorAll(".snake").length
+
         document.querySelector("body").addEventListener("keydown", (e) => {
-
+            let snakeLength = document.querySelectorAll(".snake").length
             e.keyCode == moveSnakeDirect ? changeDirect = false : changeDirect = true
-
             if (snakeLength != 1) {
                 if (moveSnakeDirect - 2 == e.keyCode || moveSnakeDirect + 2 == e.keyCode) {
                     return
@@ -102,6 +101,10 @@
             start = true
 
         })
+
+        function gameOver() {
+            alert("game over")
+        }
 
         function createFood() {
             let emptyBlock = document.querySelectorAll(".empty")
@@ -127,7 +130,7 @@
                 return;
             }
             if (nextOfSnake.classList.contains("snake")) {
-                alert("game over")
+                gameOver()
                 return;
             }
             firstOfSnake.classList.remove("first")
