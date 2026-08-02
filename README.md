@@ -12,3 +12,7 @@ A fully functional Snake game built with vanilla HTML, CSS, and JavaScript — n
 
 # SCREEN-SHOT
 
+<img src="4.png" >
+<img src="3.png" >
+<img src="2.png" >
+<img src="1.png" >
