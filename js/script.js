@@ -43,21 +43,23 @@ function beforeStrat() {
 
   //set controls
   document.querySelector("body").addEventListener("keydown", (e) => {
-    if (snakeLengthNumber() != 1) {
-      if (
-        moveSnakeDirect - 2 == e.keyCode ||
-        moveSnakeDirect + 2 == e.keyCode
-      ) {
-        return;
+    if (e.keyCode > 36 && e.keyCode < 41) {
+      if (snakeLengthNumber() != 1) {
+        if (
+          moveSnakeDirect - 2 == e.keyCode ||
+          moveSnakeDirect + 2 == e.keyCode
+        ) {
+          return;
+        }
       }
-    }
 
-    moveSnakeDirect = e.keyCode;
-    start ? null : startGame();
-    start = true;
+      moveSnakeDirect = e.keyCode;
+      start ? null : startGame();
+      start = true;
+    }
   });
-  //set controls
 }
+//set controls
 
 function snakeLengthNumber() {
   return document.querySelectorAll(".snake").length;
