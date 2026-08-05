@@ -201,5 +201,5 @@ function startGame() {
             moveTo("down", 20);
             break;
         }
-      }, 500));
+      }, 200));
 }
