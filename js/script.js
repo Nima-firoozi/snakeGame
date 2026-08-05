@@ -79,7 +79,7 @@ function win() {
 //buil ui of gameover
 function gameOver() {
   clearInterval(startSetInterval);
-  wrapper.innerHTML = `<h2>Gamo Over</h2>
+  wrapper.innerHTML = `<h2>Game Over</h2>
                                  <div class="gameover">
                                     <button class="restart">RESTART</button>
                                     <button class="exit">EXIT</button>
